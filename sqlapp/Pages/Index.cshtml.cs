@@ -9,10 +9,19 @@ namespace sqlapp.Pages
     {
         public List<Employee> Employees;
 
+        // Creating constructor for the index model
+
+        private readonly IEmployeeDB employeeDB;
+
+        public IndexModel(IEmployeeDB employeeDB)
+        {
+            employeeDB = employeeDB;
+        }
+
         public void OnGet()
         {
-            EmployeeDB employeeService = new EmployeeDB();
-            Employees = employeeService.GetEmployees();
+            // EmployeeDB employeeService = new EmployeeDB();
+            Employees = employeeDB.GetEmployees();
         }
     }
 }

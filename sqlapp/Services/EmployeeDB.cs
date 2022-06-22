@@ -3,21 +3,33 @@ using System.Data.SqlClient;
 
 namespace sqlapp.Services
 {
-    public class EmployeeDB
+    public class EmployeeDB : IEmployeeDB
     {
+        /*
         private static string db_endpoint = "ikclassessqlserver.database.windows.net";
         private static string db_user = "sqladmin";
         private static string db_password = "Azure@123";
         private static string db_database = "ikclassessqldb";
+        */
+
+        private readonly IConfiguration _configuration;
+
+        public EmployeeDB(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
 
         private SqlConnection GetConnection()
         {
+            /*
             var _builder=new SqlConnectionStringBuilder();
             _builder.DataSource = db_endpoint;
             _builder.UserID = db_user;
             _builder.Password = db_password;
             _builder.InitialCatalog = db_database;
             return new SqlConnection(_builder.ConnectionString);
+            */
+            return new SqlConnection(_configuration.GetConnectionString("SQLConnection"));
         }
 
         public List<Employee> GetEmployees()

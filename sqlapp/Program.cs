@@ -1,4 +1,9 @@
+using sqlapp.Services;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Adding service to utilize the connection string
+builder.Services.AddTransient<IEmployeeDB, EmployeeDB>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
