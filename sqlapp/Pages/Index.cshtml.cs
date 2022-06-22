@@ -7,21 +7,20 @@ namespace sqlapp.Pages
 {
     public class IndexModel : PageModel
     {
-        public List<Employee> Employees;
-
         // Creating constructor for the index model
 
-        private readonly IEmployeeDB employeeDB;
+        private readonly IEmployeeDB _employeeDB;
 
         public IndexModel(IEmployeeDB employeeDB)
         {
-            employeeDB = employeeDB;
+            _employeeDB = employeeDB;
         }
 
+        public List<Employee> Employees;
         public void OnGet()
         {
             // EmployeeDB employeeService = new EmployeeDB();
-            Employees = employeeDB.GetEmployees();
+            Employees = _employeeDB.GetEmployees();
         }
     }
 }
